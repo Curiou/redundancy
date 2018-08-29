@@ -52,11 +52,10 @@ class Mail(BaseClass):
     @staticmethod
     def send(f_address, t_address, msg):
         """
-        发送
-        SMTP服务是需要授权码
-        :param f_address: 文件位置
-        :param t_address:  时间节点
-        :param msg: 错误的消息
+        发送SMTP服务是需要授权码
+        :param sender: 邮件发送者邮箱
+        :param receivers: 邮件接收者邮箱
+        :param msg: 邮件内容
         :return:
         """
         mailCfg = getMailCfg()
