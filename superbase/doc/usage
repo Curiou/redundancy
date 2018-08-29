@@ -1,0 +1,22 @@
+
+
+被调用的python文件需要一个主类从BaseClass继承---参考BaseCrawler
+main函数 调用callMethod(类名，sys.argv[1:])---参考sample/sample.py
+BaseClass处理提供了两个重要功能
+    1，处理配置参数
+        input：按优先级从低到高（高优先级会覆盖低优先级配置）
+            a 在gConfig里静态配置--不建议，gConfig的静态配置尽量少
+            b 在BaseClass的子类里配置一个map--如baseCrawler，配置和爬虫全局相关的默认参数--适用于不易变参数
+            c 从脚本传入参数，格式: key=val,key2=val2,..---适用于易变参数
+        使用：gConfig
+
+    2，log支持
+        可直接使用log,exception会被记录到db
+
+
+调用方法:
+
+脚本 配置参数 方法 方法参数
+e.g
+python superbase/sample1.py "env=DEV,test.size=101"  test1 hello world
+

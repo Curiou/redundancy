@@ -1,0 +1,62 @@
+1，TODO
+2，TODO
+3，TODO
+4,module
+    4.1 import 规则
+        a) do not use from xx import *
+        b) Absolute imports are recommended e.g import develop.common.cleaner.email
+        c) import order
+            standard library imports
+            related third party imports
+            local application/library specific imports
+    4.2 全局变量:只允许只读,全部大写 e.g MAX_CONNECTION = 3
+    4.3 函数,只作为API存在,供其它模块调用,越少越好
+    4.4 在模块一级(global),不要有代码逻辑,e.g 不要做读文件等操作,所有操作都应该封装到函数或者类里
+
+5, 类
+    5.1 每个模块有一个主体类，从BaseClass继承
+    5.2 主体类外最多使用一个辅助类,建议不用辅助类,鼓励在主体类中使用嵌套类
+    5.3 方法数目不要超过20个,超过则使用嵌套类再封装一层
+    5.4 public的方法(API),放到__init__之后
+    5.5 建议私有方法加一个下划线
+    5.6 函数代码长度不要超过100行
+
+6, 类的具体实现
+    6.1 主体类继承自baseClass或其子类
+        init__至少带一个param参数
+        并调用baseClass.__init(self,params=params)
+    baseClass的作用是控制顶层逻辑,复用公用逻辑,如config,log
+    6.2 不要出现super
+    6.3 不用多重继承,尽量用组合
+
+7,资源管理
+    所有系统资源(file,socket,...)尽量用with 控制,确保释放
+
+8,错误异常控制
+    8.1 always log.exception
+    8.2 就近处理,否则明确raise exception
+    8.3 无法处理的异常必须调用logException
+
+9,config
+    三级config控制体系
+    global:在全局配置
+    module:在baseClass的子类控制
+    input:调用主体类时输入参数
+    所有主体类都用全局gConfig字典统一访问配置参数
+
+10,脚本调用
+    python 脚本文件 配置参数 方法 方法参数
+    e.g
+    python spider/jobui.py "localdb=1,test=1"  matchCompany 10 20 test@test.com
+    脚本main函数 调用callMethod(类名，sys.argv[1:])
+
+11,log
+    11.1 用log,不要用print
+        有全局封装的logXXX,如logDebug,logInfo，logError
+
+12,命名规则
+    包,函数,方法统一用小写开头+驼峰
+    类统一用大写开头+驼峰
+
+13,缩进
+    用IDE的code format统一处理

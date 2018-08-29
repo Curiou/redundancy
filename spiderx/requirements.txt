@@ -1,0 +1,5 @@
+lxml
+selenium
+pyquery
+requests
+mysql

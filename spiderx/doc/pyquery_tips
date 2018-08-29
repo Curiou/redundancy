@@ -1,0 +1,16 @@
+http://pyquery.readthedocs.io/en/latest/pseudo_classes.html
+:contains
+:child
+:descendant,:parent
+:eq,:gt,:lt,:last
+:even,:odd
+
+http://pyquery.readthedocs.io/en/latest/api.html
+filter
+is_
+not_
+parents
+siblings
+
+
+

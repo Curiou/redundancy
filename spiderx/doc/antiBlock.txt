@@ -1,0 +1,38 @@
+反屏蔽是爬虫最核心的工作.
+1 block探测
+    1.1 有确定的block信息
+    1.2 页面结构变化,邮件通知,人工检验
+        1.2.1 是页面变化,修改解析代码
+        1.2.2 是新的block信息,添加该信息
+
+2 block handler
+    2.1 断点重抓是基础,每个爬虫任务需要有断点重爬设计
+    2.2 如何恢复断点
+        2.2.1 基本方法
+            A. new session 是基本,换UA等参数
+            B. postpone,有时只要延时一段时间再抓就可以
+            C. change interval:爬取间隔,要么变长,要么随机
+        2.2.2  换IP
+        2.2.3  换机器(换IP加强版)
+        2.2.4  换帐号
+
+3,流程
+    当确定是block后:
+        调用self.handleError() which will set the job to error status and wait for handling,
+        退出当前任务
+
+    FYI:前端爬虫工程师不需要关心如下
+        handler会是worker or foreman
+        worker will checkError, and handle it
+        so does foreman
+        foreman 主要是变IP用
+
+4，主动进攻策略
+    如果已经知道网站的block的策略，可以用主动antiblock方法，
+    相关参数是：
+    CFG_HTTP_INTERVAL 延长间隔，或者设为随机值如0.1_10
+    CFG_HTTP_MAXREQUEST 减少每次session请求次数
+    CFG_HTTP_PROXY_INTERVAL   变代理间隔
+        solution1:getOneProxyFromPool
+    CFG_HTTP_ACCOUNT_INTERVAL 变账号间隔
+        solution1:getOneCookieFromPool

@@ -1,0 +1,22 @@
+一个爬虫需要支持：
+1，antiBlock
+1.1 antiBlock configuration
+1.2 antiBlock Strategy
+    主动模式,设定如下参数:
+        CFG_HTTP_INTERVAL:请求间隔，可以取range如0.1-10,会在0.1秒到10秒间取随机值
+        CFG_HTTP_PROXY_INTERVAL:切换IP的间隔
+        CFG_HTTP_ACCOUNT_INTERVAL:切换账号的间隔
+        CFG_HTTP_MAXREQUEST:每个session最多请求数量
+
+2，增量/断点模式:
+  通过SyncPoint().getSyncInfo 获得本次任务同步点
+  CFG_DOWN_INDEX: 粒度尽量小，如
+    www_51job_com/resume/shanghai/internet/pm/3_5
+    表示 网站/简历/地区/行业/职业/工作年限
+
+  CFG_DOWN_WEBSITE:www_51job_com，如果缺失这个配置，系统会用CFG_DOWN_INDEX的第一个字符串
+
+4，存储规范:HourlySaveLocalHandler
+
+URLManager的使用
+通常你需要从URLManager继承一个类，提供URL
