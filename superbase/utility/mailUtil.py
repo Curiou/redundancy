@@ -53,8 +53,8 @@ class Mail(BaseClass):
     def send(f_address, t_address, msg):
         """
         发送SMTP服务是需要授权码
-        :param sender: 邮件发送者邮箱
-        :param receivers: 邮件接收者邮箱
+        :param f_address: 邮件发送者邮箱
+        :param t_address: 邮件接收者邮箱
         :param msg: 邮件内容
         :return:
         """
